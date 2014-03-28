@@ -29,13 +29,13 @@ Load your Last.Fm data:
 
 {% if twitter_id == "" %}
 Load your Twitter data: 
-<input onclick="location.href='/mdimprivacy/twitter_connect'" type="image" src="https://dev.twitter.com/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Twitter Connect" />
+<input onclick="location.href='/twitter_connect'" type="image" src="https://dev.twitter.com/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Twitter Connect" />
 <br />
 {% endif %}
 
 {% if gplus_id == "" %}
 Load your Google Plus data: 
-<input onclick="location.href='/mdimprivacy/gplus_connect'" type="image" src="https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Medium_base_44dp.png" alt="Google Plus Connect" style="width: 120px; height: 40px;" />
+<input onclick="location.href='/gplus_connect'" type="image" src="https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Medium_base_44dp.png" alt="Google Plus Connect" style="width: 120px; height: 40px;" />
 <br />
 {% endif %}
 
@@ -62,14 +62,14 @@ Wrong Password!<br />
 
 {% endif %}
 
-<form action="/mdimprivacy/login/" method="post">{% csrf_token %}
+<form action="/login/" method="post">{% csrf_token %}
  {{ form.as_p }}
  <input type="submit" name="submit" value="Login!" />
 </form>
 
 <br />
 
-<a href="/mdimprivacy/register/">Register!</a>
+<a href="/register/">Register!</a>
 
 {% endif %}
 

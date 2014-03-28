@@ -4,14 +4,14 @@
 
 {% if username == None %}
 
-<form action="/mdimprivacy/register/" method="post">{% csrf_token %}
+<form action="/register/" method="post">{% csrf_token %}
  {{ form.as_p }}
  <input type="submit" name="submit" value="Register!" />
 </form>
 
 {% else %}
 
-Thanks for registering {{ username }}! <a href="/mdimprivacy/">Login!</a>
+Thanks for registering {{ username }}! <a href="/">Login!</a>
 
 {% endif %}
 
