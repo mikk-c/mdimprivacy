@@ -1,0 +1,76 @@
+{% extends "template.htm" %}
+
+{% block secondary-script %}
+{% endblock %}
+
+{% block content %}
+
+{% if authenticated %}
+
+Welcome, {{ username }}!<br />
+
+{% if facebook_id == "" %}
+Load your Facebook data: 
+<input onclick="facebook_connect()" type="image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_large_long.gif" alt="Facebook Connect" />
+<div id="fb-root"></div>
+{% endif %}
+
+{% if linkedin_id == "" %}
+Load your Linkedin data: 
+<a href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={{ linkedin_app_id }}&scope=r_fullprofile,r_network&state=8cy823ycn29y3&redirect_uri=http://www.atlas.cid.harvard.edu/mdimprivacy/linkedin_player/">Connect with Linkedin</a>
+<br />
+{% endif %}
+
+{% if lastfm_id == "" %}
+Load your Last.Fm data: 
+<a href="http://www.last.fm/api/auth/?api_key={{ lastfm_app_id }}&cb=http://www.atlas.cid.harvard.edu/mdimprivacy/lastfm_player/">Connect with Lastfm</a>
+<br />
+{% endif %}
+
+{% if twitter_id == "" %}
+Load your Twitter data: 
+<input onclick="location.href='/mdimprivacy/twitter_connect'" type="image" src="https://dev.twitter.com/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="Twitter Connect" />
+<br />
+{% endif %}
+
+{% if gplus_id == "" %}
+Load your Google Plus data: 
+<input onclick="location.href='/mdimprivacy/gplus_connect'" type="image" src="https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Medium_base_44dp.png" alt="Google Plus Connect" style="width: 120px; height: 40px;" />
+<br />
+{% endif %}
+
+{% if flickr_id == "" %}
+Load your Flickr data: 
+<a href="/flickr_connect">Connect with Flickr</a>
+<br />
+{% endif %}
+
+<a href="/refresh/">Refresh data!</a>
+
+<br />
+<a href="/logout/">Logout</a>
+
+{% else %}
+
+{% if error == "inactive" %}
+
+Inactive User!<br />
+
+{% elif error == "wrong_password" %}
+
+Wrong Password!<br />
+
+{% endif %}
+
+<form action="/mdimprivacy/login/" method="post">{% csrf_token %}
+ {{ form.as_p }}
+ <input type="submit" name="submit" value="Login!" />
+</form>
+
+<br />
+
+<a href="/mdimprivacy/register/">Register!</a>
+
+{% endif %}
+
+{% endblock %}
